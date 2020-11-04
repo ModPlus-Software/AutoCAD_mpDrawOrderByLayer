@@ -155,8 +155,8 @@
                                                         if (ModPlus.Helpers.XDataHelpers.GetStringXData("MP_DOBLAuto_up_layer").Equals(curLay))
                                                         {
                                                             dot?.MoveToTop(new ObjectIdCollection(new[] { ent.ObjectId }));
-                                                            ed.WriteMessage("\n" + Language.GetItem(LangItem, "h10") +
-                                                                            " " + "\"" + curLay + "\" " + Language.GetItem(LangItem, "h11"));
+                                                            ed.WriteMessage(
+                                                                $"\n{Language.GetItem(LangItem, "h10")} \"{curLay}\" {Language.GetItem(LangItem, "h11")}");
                                                         }
                                                     }
 
@@ -165,8 +165,8 @@
                                                         if (ModPlus.Helpers.XDataHelpers.GetStringXData("MP_DOBLAuto_down_layer").Equals(curLay))
                                                         {
                                                             dot?.MoveToBottom(new ObjectIdCollection(new[] { ent.ObjectId }));
-                                                            ed.WriteMessage("\n" + Language.GetItem(LangItem, "h10") +
-                                                                            " " + "\"" + curLay + "\" " + Language.GetItem(LangItem, "h12"));
+                                                            ed.WriteMessage(
+                                                                $"\n{Language.GetItem(LangItem, "h10")} \"{curLay}\" {Language.GetItem(LangItem, "h12")}");
                                                         }
                                                     }
                                                 }

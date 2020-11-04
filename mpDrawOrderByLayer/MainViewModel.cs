@@ -39,13 +39,13 @@
             AcApp.DocumentManager.DocumentActivated += DocumentManager_DocumentActivated;
 
             // commands
-            ReverseListCommand = new RelayCommand(ReverseList);
-            SelectAllCommand = new RelayCommand(SelectAll);
-            DeSelectAllCommand = new RelayCommand(DeSelectAll);
-            InverseListCommand = new RelayCommand(InverseList);
-            AcceptCommand = new RelayCommand(Accept);
-            SaveLayersPositionCommand = new RelayCommand(SaveLayersPosition);
-            LoadLayersPositionCommand = new RelayCommand(LoadLayersPosition);
+            ReverseListCommand = new RelayCommandWithoutParameter(ReverseList);
+            SelectAllCommand = new RelayCommandWithoutParameter(SelectAll);
+            DeSelectAllCommand = new RelayCommandWithoutParameter(DeSelectAll);
+            InverseListCommand = new RelayCommandWithoutParameter(InverseList);
+            AcceptCommand = new RelayCommandWithoutParameter(Accept);
+            SaveLayersPositionCommand = new RelayCommandWithoutParameter(SaveLayersPosition);
+            LoadLayersPositionCommand = new RelayCommandWithoutParameter(LoadLayersPosition);
         }
 
         public DrawOrderByLayer ParentWindow { get; set; }
@@ -263,7 +263,7 @@
 
         public ICommand ReverseListCommand { get; set; }
 
-        private void ReverseList(object o)
+        private void ReverseList()
         {
             for (var i = 0; i < Layers.Count; i++)
                 Layers.Move(Layers.Count - 1, i);
@@ -271,7 +271,7 @@
 
         public ICommand SelectAllCommand { get; set; }
 
-        private void SelectAll(object o)
+        private void SelectAll()
         {
             foreach (var layerItem in Layers)
                 layerItem.Selected = true;
@@ -279,7 +279,7 @@
 
         public ICommand DeSelectAllCommand { get; set; }
 
-        private void DeSelectAll(object o)
+        private void DeSelectAll()
         {
             foreach (var layerItem in Layers)
                 layerItem.Selected = false;
@@ -287,7 +287,7 @@
 
         public ICommand InverseListCommand { get; set; }
 
-        private void InverseList(object o)
+        private void InverseList()
         {
             foreach (var layerItem in Layers)
                 layerItem.Selected = !layerItem.Selected;
@@ -295,7 +295,7 @@
 
         public ICommand AcceptCommand { get; set; }
 
-        private void Accept(object o)
+        private void Accept()
         {
             // Сначала обрабатываем перемещение слоев из списка
             // Получаем список имен слоев, которые отмечены
@@ -389,7 +389,7 @@
 
         public ICommand SaveLayersPositionCommand { get; set; }
 
-        private void SaveLayersPosition(object o)
+        private void SaveLayersPosition()
         {
             // Каждый слой буду хранить как отдельную запись, чтобы не превысить лимит
 
@@ -405,7 +405,7 @@
 
         public ICommand LoadLayersPositionCommand { get; set; }
 
-        private void LoadLayersPosition(object o)
+        private void LoadLayersPosition()
         {
             try
             {

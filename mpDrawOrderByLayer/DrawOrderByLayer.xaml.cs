@@ -12,6 +12,7 @@
             InitializeComponent();
             Title = ModPlusAPI.Language.GetItem("mpDrawOrderByLayer", "h1");
         }
+
         // Окно загрузилось
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

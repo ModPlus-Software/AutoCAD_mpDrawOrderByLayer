@@ -2,7 +2,6 @@
 {
     using Autodesk.AutoCAD.ApplicationServices.Core;
     using Autodesk.AutoCAD.Runtime;
-    using ModPlusAPI;
 
     public class DrawOrderByLayerFunction
     {
@@ -11,7 +10,9 @@
         [CommandMethod("ModPlus", "MpDrawOrderByLayer", CommandFlags.Modal)]
         public void StartFunction()
         {
-            Statistic.SendCommandStarting(new ModPlusConnector());
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting(new ModPlusConnector());
+#endif
 
             if (_drawOrderByLayer == null)
             {
@@ -24,11 +25,11 @@
                     Autodesk.AutoCAD.Internal.Utils.SetFocusToDwgView();
                 };
             }
+
             if (_drawOrderByLayer.IsLoaded)
                 _drawOrderByLayer.Activate();
             else
-                Application.ShowModelessWindow(
-                    Application.MainWindow.Handle, _drawOrderByLayer);
+                Application.ShowModelessWindow(Application.MainWindow.Handle, _drawOrderByLayer);
         }
     }
 }
