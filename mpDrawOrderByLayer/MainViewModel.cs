@@ -396,7 +396,8 @@
             for (var i = 0; i < Layers.Count; i++)
             {
                 var layerItem = Layers[i];
-                ModPlus.Helpers.XDataHelpers.SetStringXData($"{_mpLayersPosition}_{layerItem.Name}", $"{i}_{layerItem.Selected}");
+                ModPlus.Helpers.XDataHelpers.SetStringXData(
+                    $"{_mpLayersPosition}_{layerItem.Name}", $"{i}_{layerItem.Selected}");
             }
 
             ModPlus.Helpers.XDataHelpers.SetStringXData(_mpLayersPosition, "no matter");
@@ -409,8 +410,8 @@
         {
             try
             {
-                Dictionary<int, LayerItem> savedLayers = new Dictionary<int, LayerItem>();
-                List<LayerItem> notSavedLayers = new List<LayerItem>();
+                var savedLayers = new Dictionary<int, LayerItem>();
+                var notSavedLayers = new List<LayerItem>();
                 foreach (var layerItem in Layers)
                 {
                     var key = $"{_mpLayersPosition}_{layerItem.Name}";
@@ -418,11 +419,12 @@
                     bool hasSaved = false;
                     if (!string.IsNullOrEmpty(value))
                     {
-                        var splitted = value.Split('_');
-                        if (splitted.Length == 2)
+                        var split = value.Split('_');
+                        if (split.Length == 2)
                         {
-                            if (int.TryParse(splitted[0], out int position) &&
-                                bool.TryParse(splitted[1], out bool isChecked))
+                            if (int.TryParse(split[0], out int position) &&
+                                bool.TryParse(split[1], out bool isChecked) &&
+                                !savedLayers.ContainsKey(position))
                             {
                                 hasSaved = true;
                                 layerItem.Selected = isChecked;
